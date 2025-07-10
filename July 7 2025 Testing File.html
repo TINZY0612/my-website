@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zi Yik's Website</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: linear-gradient(180deg, #e6f4e6 0%, #f7f3e7 100%);
+            min-height: 100vh;
+            color: #11503b;
+            overflow-x: hidden;
+        }
+        .hero {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 48px;
+            max-width: 1000px;
+            margin: 140px auto 0 auto;
+            padding: 0 24px;
+        }
+        .profile-img {
+            width: 260px;
+            height: 260px;
+            background: #bfa48a;
+            border-radius: 50%;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin: 0 0 24px 0;
+            text-align: left;
+            line-height: 1.05;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: left;
+            margin-left: 10px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            .profile-img {
+                width: 180px;
+                height: 220px;
+            }
+        }
+        .split-hero {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .split-left {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: #111;
+            font-size: 1rem;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .split-center {
+            text-align: center;
+        }
+        .split-title {
+            color: #111;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .split-desc {
+            color: #111;
+            font-size: 1.5rem;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        @media (max-width: 900px) {
+            .split-hero {
+                flex-direction: column;
+                height: auto;
+            }
+            .split-left, .split-right {
+                flex: none;
+                width: 100vw;
+                height: 50vh;
+            }
+            .split-right img {
+                height: 50vh;
+            }
+        }
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .side-nav.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .side-nav-icons {
+            background: rgba(255,255,255,0.7);
+            border-radius: 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 24px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 48px;
+        }
+        .side-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .side-icon:hover {
+            background: rgba(17,80,59,0.08);
+        }
+        @media (max-width: 900px) {
+            .side-nav {
+                display: none;
+            }
+        }
+        .fixed-bg-section {
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+            background: url('photo11.jpg') center center / cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .fixed-bg-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 600px;
+        }
+        .fixed-bg-box {
+            background: #fff;
+            padding: 48px 40px;
+            margin-left: 8vw;
+            max-width: 700px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+            border-radius: 4px;
+        }
+        .fixed-bg-box p {
+            font-size: 1.3rem;
+            color: #222;
+            margin-bottom: 32px;
+        }
+        .fixed-bg-box h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+        }
+        @media (max-width: 900px) {
+            .fixed-bg-section, .fixed-bg-content {
+                min-height: 400px;
+            }
+            .fixed-bg-box {
+                padding: 24px 12px;
+                margin-left: 0;
+                max-width: 95vw;
+            }
+        }
+        .work-section {
+            background: #fafbfc;
+            padding: 100px 0 80px 0;
+            min-height: 600px;
+            position: relative;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .work-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #222;
+            text-align: center;
+            width: 100%;
+            display: block;
+            margin-bottom: 56px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .work-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .work-history {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 1350px;
+            margin: 0 auto;
+            position: relative;
+        }
+        /* Only apply the vertical line to the work section */
+        .work-section .work-history::before {
+            content: '';
+            position: absolute;
+            left: 60px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #b2c8b2 0%, #11503b 100%);
+            z-index: 0;
+        }
+        .studies-history {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 1350px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .studies-history .work-card {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .studies-history .work-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .work-card {
+            display: flex;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            overflow: hidden;
+            align-items: stretch;
+            padding-left: 24px;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+            margin-left: 10px;
+            width: 100%;
+            min-width: 600px;
+        }
+        .work-info-area {
+            flex: 2 1 0;
+            min-width: 0;
+            padding: 24px 32px 24px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .work-info-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .work-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 8px;
+            flex-shrink: 0;
+            background: #fff;
+            max-width: 80px;
+            min-width: 60px;
+        }
+        .work-extra-img-area {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-end;
+        }
+        .work-extra-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 8px 8px 0;
+            margin-left: 0;
+            box-shadow: none;
+            display: block;
+        }
+        .work-location {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .work-date {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 8px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .work-role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #11503b;
+            margin-bottom: 8px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .work-desc {
+            font-size: 1.1rem;
+            color: #222;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        @media (max-width: 900px) {
+            .work-history {
+                gap: 24px;
+                max-width: 98vw;
+            }
+            .work-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 16px;
+                margin-left: 0;
+                min-width: 0;
+            }
+            .work-info-area {
+                padding: 0;
+            }
+            .work-info-header {
+                gap: 10px;
+            }
+            .work-img {
+                width: 60px;
+                height: 60px;
+                max-width: 60px;
+                min-width: 40px;
+            }
+            .work-extra-img-area {
+                width: 100%;
+                height: 100px;
+                min-width: 0;
+            }
+            .work-extra-img {
+                width: 100%;
+                height: 100px;
+                border-radius: 0 0 8px 8px;
+                align-self: stretch;
+            }
+        }
+        .side-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            color: #11503b;
+            font-size: 1rem;
+            padding: 6px 16px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            white-space: nowrap;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 999;
+            pointer-events: none;
+        }
+        .side-icon:hover .side-tooltip,
+        .side-icon:focus .side-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .side-icon {
+            position: relative;
+        }
+        .awards-section {
+            margin-top: 64px;
+        }
+        .awards-row {
+            max-width: 1350px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .award-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            width: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0 0 16px 0;
+            transition: box-shadow 0.2s;
+        }
+        .award-card:hover {
+            box-shadow: 0 6px 24px rgba(17,80,59,0.12);
+        }
+        .award-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 18px;
+        }
+        .award-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #222;
+            margin: 0 16px 2px 16px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .award-desc {
+            font-size: 1rem;
+            color: #444;
+            margin: 0 16px 16px 16px;
+            flex: 1;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .award-footer {
+            display: flex;
+            align-items: center;
+            margin-left: 16px;
+        }
+        .award-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: #f0f0f0;
+        }
+        @media (max-width: 900px) {
+            .awards-row {
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+            .award-card {
+                width: 90vw;
+            }
+        }
+        .awards-container {
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+        .awards-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #11503b;
+            margin-bottom: 32px;
+            text-align: left;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .awards-title.working-experiences {
+            margin-left: 0;
+        }
+        .split-left, .split-right {
+            width: 50vw;
+            min-width: 0;
+            flex: none;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .split-right img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .work-container {
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+        .award-date {
+            font-size: 0.95rem;
+            color: #888;
+            margin: 0 16px 2px 16px;
+            font-family: 'Inter', 'Arial', sans-serif;
+        }
+        .award-img-carousel {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        .award-img-carousel .award-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 2;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-arrow.left {
+            left: 10px;
+        }
+        .carousel-arrow.right {
+            right: 10px;
+        }
+        .carousel-arrow svg {
+            width: 28px;
+            height: 28px;
+            stroke: #11503b;
+            stroke-width: 3;
+            fill: none;
+            display: block;
+        }
+        .award-img-carousel:hover .carousel-arrow {
+            opacity: 1;
+        }
+        .study-card {
+            width: 75%;
+            margin: 0 auto;
+        }
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 100%;
+        }
+        .carousel-arrow {
+            background: rgba(255,255,255,0.7);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0 10px;
+            z-index: 2;
+            border-radius: 50%;
+            transition: background 0.2s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .carousel-arrow.left {
+            left: 10px;
+        }
+        .carousel-arrow.right {
+            right: 10px;
+        }
+        #peiyuan-carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <section class="split-hero">
+        <div class="side-nav">
+            <div class="side-nav-icons">
+                <a href="#" class="side-icon"> 
+                    <svg width="20" height="20" fill="none" stroke="#11503b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20v-6M6 12l6-6 6 6"/></svg>
+                    <span class="side-tooltip">Back To Top...</span>
+                </a>
+                <a href="#about-work" class="side-icon">
+                    <svg width="20" height="20" fill="none" stroke="#11503b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/></svg>
+                    <span class="side-tooltip">About Work....</span>
+                </a>
+                <span class="side-icon">
+                    <svg width="20" height="20" fill="none" stroke="#11503b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 2 22 22 22 12 2"/></svg>
+                    <span class="side-tooltip">Travelling Memories...</span>
+                </span>
+                <span class="side-icon">
+                    <svg width="20" height="20" fill="none" stroke="#11503b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                    <span class="side-tooltip">Interesting Side Tasks In Life...</span>
+                </span>
+            </div>
+        </div>
+        <div class="split-left">
+            <div class="split-center">
+                <h1 class="split-title">Hi, I'm Zi Yik!</h1>
+                <div class="split-desc">22, restless, and totally addicted to throwing myself <br> into weird, uncomfortable stuff to level up.<br></div>
+            </div>
+        </div>
+        <div class="split-right">
+            <img src="photo1.jpg" alt="Profile Photo" />
+        </div>
+    </section>
+    <section class="fixed-bg-section">
+        <div class="fixed-bg-content">
+            <div class="fixed-bg-box">
+                <h2>I Know... This Is Something Unusual</h2>
+                <p>To people who knows me, this is a place to recall memories 🥹<br> To recruiters, treat this as an interactive resume 💼<br> To anyone else, errrr... Hiii 👋</p>
+            </div>
+        </div>
+    </section>
+    <section class="studies-section">
+        <div class="studies-title-wrapper">
+            <h2 class="studies-title">About Studies...</h2>
+        </div>
+        <div class="studies-container">
+            <div class="studies-history">
+                <div class="work-card study-card">
+                    <div class="work-info-area">
+                        <div class="work-info-header">
+                            <img src="cuhk.jpg" alt="University 1" class="work-img" />
+                            <div>
+                                <div class="work-location">The Chinese University of Hong Kong</div>
+                                <div class="work-date">September 2023 – December 2026</div>
+                            </div>
+                        </div>
+                        <div class="work-role">Bachelor of Science in Quantitative Finance and Risk Management Science</div>
+                        <div class="work-desc">CGPA: 3.4/4.0 <br><br> Notable Awards: <br>2025 Student of the Year (QF), 2023 - 2027 Full Scholarship Recipient</div>
+                    </div>
+                    <div class="work-extra-img-area">
+                        <img src="cuhk1.jpg" alt="CUHK Campus" class="work-extra-img" id="cuhk-carousel-img" />
+                    </div>
+                </div>
+                <div class="work-card study-card">
+                    <div class="work-info-area">
+                        <div class="work-info-header">
+                            <img src="sunwaycollege.jpg" alt="University 2" class="work-img" />
+                            <div>
+                                <div class="work-location">Sunway College Kuala Lumpur</div>
+                                <div class="work-date">July 2021 – December 2022</div>
+                            </div>
+                        </div>
+                        <div class="work-role">GCE A-Levels</div>
+                        <div class="work-desc">4A* in Mathematics, Further Mathematics, Chemistry, and Physics <br><br> Notable University Offers:<br> Imperial College London, NUS, HKU (full scholarship), HKUST (full scholarship) <br><br> Awarded with Jeffrey Cheah Foundation Full scholarship</div>
+                    </div>
+                    <div class="work-extra-img-area">
+                        <img src="sunway1.jpg" alt="Sunway College Campus" class="work-extra-img" id="sunway-carousel-img" />
+                    </div>
+                </div>
+                <div class="work-card study-card">
+                    <div class="work-content">
+                        <div class="work-info-header">
+                            <img src="smjk.webp" alt="Pei Yuan Logo" class="work-logo">
+                            <div>
+                                <div class="work-location">SMJK Pei Yuan Kampar, Perak</div>
+                                <div class="work-date">January 2016 - March 2021</div>
+                            </div>
+                        </div>
+                        <div class="work-role">SPM (Malaysia's National Exam)</div>
+                        <div class="work-desc">10As with 9A+ <br><br>Orchcestra Conductor, Vice President of Uniform Body, School Representatives for various competitions</div>
+                    </div>
+                    <div class="work-extra-img-area">
+                        <img src="peiyuan1.jpg" alt="Pei Yuan High School Campus" class="work-extra-img" id="peiyuan-carousel-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work-section" id="about-work">
+        <h2 class="work-title">About Work...</h2>
+        <div class="work-container">
+            <h3 class="awards-title working-experiences">Working Experiences</h3>
+            <div class="work-history">
+                <div class="work-card">
+                    <div class="work-info-area">
+                        <div class="work-info-header">
+                            <img src="work1.png" alt="Company 1" class="work-img" />
+                            <div>
+                                <div class="work-location">DBS Bank, Hong Kong</div>
+                                <div class="work-date">Jun 2025 - Aug 2025</div>
+                            </div>
+                        </div>
+                        <div class="work-role">Global Financial Markets Summer Intern</div>
+                        <div class="work-desc">
+                            <ul style='margin: 0 0 0 18px; padding: 0; font-size: 1.05rem;'>
+                                <li>Analyzed liquidity requirements set by the HKMA and built an Excel VBA model using Bloomberg that automated the Liquidity Maintenance Ratio (LMR) projection, streamlining the process from 10 minutes to a single-click solution.</li>
+                                <br><li>Shadowed funding dealers, FX traders, and credit traders to gain hands-on exposure to interbank markets, HIBOR mechanics, market-making, and FX trading, while also writing internal market recaps and presenting trade ideas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="work-extra-img-area">
+                        <img src="dbs1.jpg" alt="Work 1 Extra" class="work-extra-img" />
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-info-area">
+                        <div class="work-info-header">
+                            <img src="Deloitte.svg" alt="Company 2" class="work-img" />
+                            <div>
+                                <div class="work-location">Deloitte Advisory, Hong Kong</div>
+                                <div class="work-date">Jan 2025 - Apr 2025</div>
+                            </div>
+                        </div>
+                        <div class="work-role">M&A - Valuation & Modelling Intern</div>
+                        <div class="work-desc">
+                            <ul style='margin: 0 0 0 18px; padding: 0; font-size: 1.05rem;'>
+                                <li>Valued 5+ properties in HK, AU, and Mainland China using the Term and Reversion Method and trading comps after conducting a comprehensive analysis of the local real estate market with key metrics such as cap rates, reversionary yield etc.</li>
+                                <br><li>Valued 5+ acquisition targets and acquired companies in M&A using DCF, comps, and precedent transaction methods to assess fair value or impairment loss through in-depth macro, industry, and company research for reasonable financial projections.</li>
+                                <br><li>Developed and updated Excel VBA scripts to run Monte Carlo simulations and utilized other option pricing models, such as the Black-Scholes model and the Binomial Option Pricing Model to value 5+ ESOPs, stock options, and convertible bonds.</li>
+                                <br><li>Calculated the MTM value for 20+ FX forwards and swaps, and assisted in pricing 5+ corporate bonds for audit reviews.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="work-extra-img-area">
+                        <img src="deloitte1.jpg" alt="Work 2 Extra" class="work-extra-img" />
+                    </div>
+                </div>
+                <div class="work-card">
+                     <div class="work-info-area">
+                         <div class="work-info-header">
+                             <img src="investhklogo.png" alt="Company 3" class="work-img" />
+                             <div>
+                                 <div class="work-location">InvestHK, Singapore</div>
+                                 <div class="work-date">Jun 2024 – Aug 2024</div>
+                             </div>
+                         </div>
+                         <div class="work-role">Investment Intern</div>
+                         <div class="work-desc">
+                             <ul style='margin: 0 0 0 18px; padding: 0; font-size: 1.05rem;'>
+                                 <li>Performed comprehensive market research and prepared 8 pitching materials on the HK and ASEAN markets to encourage FDI from Singapore, focusing on the fashion, supply chain, AI and robotics, and modern food industries.</li>
+                                 <br><li>Solely managed 2 clients from initial contact to project completion, including preparing 100+ slides for presentations, pitching and interacting with the management team, conducting due diligence, and building strong relationships.</li>
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="work-extra-img-area">
+                         <img src="investhk1.jpg" alt="Work 3 Extra" class="work-extra-img" />
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="awards-section">
+            <div class="awards-container">
+                <h3 class="awards-title">Notable Awards</h3>
+                <div class="awards-row">
+                <div class="award-card">
+                    <img src="photo5.jpg" alt="Award 1" class="award-img" />
+                    <div class="award-date">May 2025</div>
+                    <div class="award-title">2025 CUHK Student Of The Year (QF)</div>
+                    <div class="award-desc">Won the Student of the Year Award (Quantitative Finance Program) as a Year 2 student</div>
+                </div>
+                <div class="award-card">
+                    <img src="worldquant.png" alt="Award 2" class="award-img" />
+                    <div class="award-date">January 2025</div>
+                    <div class="award-title">WorldQuant Challenge - Gold Medalist & Malaysia Top 20</div>
+                    <div class="award-desc">Designed 6 long-short market-neutral equity alphas (1.93 Sharpe ratio & 29.61% return)</div>
+                </div>
+                <div class="award-card">
+                    <img src="oliverwyman.jpg" alt="Award 3" class="award-img" />
+                    <div class="award-date">April 2025</div>
+                    <div class="award-title">2025 Oliver Wyman Impact Case Competition Top 5</div>
+                    <div class="award-desc">Finalist team among 200+ teams in Hong Kong.</div>
+                </div>
+                </div>
+                <br><br>
+                <div class="awards-row">
+                <div class="award-card">
+                    <div class="award-img-carousel">
+                        <img src="hsbcpb1.png" alt="Award 1" class="award-img" id="hsbc-award-img" />
+                        <button class="carousel-arrow left" id="hsbc-left-arrow" aria-label="Previous image">
+                            <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+                        </button>
+                        <button class="carousel-arrow right" id="hsbc-right-arrow" aria-label="Next image">
+                            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="award-date">November 2024</div>
+                    <div class="award-title">2024 HSBC Global Private Banking Challenge - Global Top 20</div>
+                    <div class="award-desc">Constructed the optimal risky portfolio and minimum variance portfolio using Python to conduct SAA and adjust for TAA, supplemented with in-depth analysis on macroeconomics, equities, fixed income, and alternative investments</div>
+                </div>
+                <div class="award-card">
+                    <div class="award-img-carousel">
+                        <img src="berlingske1.png" alt="Award 2" class="award-img" id="berlingske-award-img" />
+                        <button class="carousel-arrow left" id="berlingske-left-arrow" aria-label="Previous image">
+                            <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+                        </button>
+                        <button class="carousel-arrow right" id="berlingske-right-arrow" aria-label="Next image">
+                            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                        </button>
+                    </div>
+                    <br>
+                    <div class="award-date">October 2024</div>
+                    <div class="award-title">2024 CBS Case Competition - Global Top 2%</div>
+                    <div class="award-desc">Largest Case Competition in the world: More than 3200 students from 104 nationalities participated</div>
+                </div>
+                <div class="award-card">
+                    <img src="uldp.jpg" alt="Award 3" class="award-img" />
+                    <div class="award-date">July 2023</div>
+                    <div class="award-title">2023 Axiata ULDP - 1st Runner Up (Overall)</div>
+                    <div class="award-desc">Other awards from ULDP 2023 <br>1. Best Stakeholder Management Award <br>2. Most Creative Award</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+    .studies-section {
+        background: #000;
+        position: relative;
+        padding: 80px 0 120px 0;
+    }
+    .studies-title-wrapper, .studies-container {
+        position: relative;
+        z-index: 1;
+    }
+    .studies-container {
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .studies-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #11503b;
+        margin-bottom: 32px;
+        text-align: left;
+        font-family: 'Inter', 'Arial', sans-serif;
+    }
+    .studies-content {
+        font-size: 1.2rem;
+        color: #222;
+        font-family: 'Inter', 'Arial', sans-serif;
+    }
+    .studies-title-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .studies-title {
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 800;
+        font-family: 'Inter', 'Arial', sans-serif;
+        margin: 0;
+    }
+    .work-card.study-card {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        max-height: 300px;
+        overflow: hidden;
+    }
+    .work-card.study-card .work-content {
+        flex: 2;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .work-card.study-card .work-img-area.carousel {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        align-self: stretch;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        position: relative;
+        padding: 0;
+        margin: 0;
+    }
+    .work-card.study-card .work-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+    .work-logo {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+    </style>
+<script>
+// Show side nav on scroll
+window.addEventListener('scroll', function() {
+    const sideNav = document.querySelector('.side-nav');
+    if (window.scrollY > 10) {
+        sideNav.classList.add('show');
+    } else {
+        sideNav.classList.remove('show');
+    }
+});
+// Fade in work title on scroll
+function handleWorkTitleFade() {
+    const workTitle = document.querySelector('.work-title');
+    if (!workTitle) return;
+    const rect = workTitle.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+        workTitle.classList.add('visible');
+    }
+}
+window.addEventListener('scroll', handleWorkTitleFade);
+window.addEventListener('DOMContentLoaded', handleWorkTitleFade);
+
+const hsbcImages = ["hsbcpb1.png", "hsbcpb2.png", "hsbcpb3.png"];
+let hsbcIndex = 0;
+const hsbcImg = document.getElementById("hsbc-award-img");
+const leftArrow = document.getElementById("hsbc-left-arrow");
+const rightArrow = document.getElementById("hsbc-right-arrow");
+
+leftArrow.addEventListener("click", function(e) {
+    e.stopPropagation();
+    hsbcIndex = (hsbcIndex - 1 + hsbcImages.length) % hsbcImages.length;
+    hsbcImg.src = hsbcImages[hsbcIndex];
+});
+rightArrow.addEventListener("click", function(e) {
+    e.stopPropagation();
+    hsbcIndex = (hsbcIndex + 1) % hsbcImages.length;
+    hsbcImg.src = hsbcImages[hsbcIndex];
+});
+// CBS Case Competition (Berlingske) carousel
+const berlingskeImages = ["berlingske1.png", "berlingske2.png", "berlingske3.png"];
+let berlingskeIndex = 0;
+const berlingskeImg = document.getElementById("berlingske-award-img");
+const berlingskeLeftArrow = document.getElementById("berlingske-left-arrow");
+const berlingskeRightArrow = document.getElementById("berlingske-right-arrow");
+
+berlingskeLeftArrow.addEventListener("click", function(e) {
+    e.stopPropagation();
+    berlingskeIndex = (berlingskeIndex - 1 + berlingskeImages.length) % berlingskeImages.length;
+    berlingskeImg.src = berlingskeImages[berlingskeIndex];
+});
+berlingskeRightArrow.addEventListener("click", function(e) {
+    e.stopPropagation();
+    berlingskeIndex = (berlingskeIndex + 1) % berlingskeImages.length;
+    berlingskeImg.src = berlingskeImages[berlingskeIndex];
+});
+// Studies slider fade in/out
+(function() {
+    const cards = document.querySelectorAll('.studies-card');
+    let current = 0;
+    function showCard(idx) {
+        cards.forEach((card, i) => {
+            if (i === idx) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+    }
+    setInterval(() => {
+        current = (current + 1) % cards.length;
+        showCard(current);
+    }, 5000);
+})();
+// Pop-up animation for studies title and cards (use .visible for .work-title)
+function handleTitlesAndStudiesCardsPopUp() {
+    document.querySelectorAll('.work-title').forEach(function(title) {
+        const rect = title.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+            title.classList.add('visible');
+        }
+    });
+    document.querySelectorAll('.studies-history .work-card').forEach(function(card) {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+            card.classList.add('in-view');
+        }
+    });
+}
+window.addEventListener('scroll', handleTitlesAndStudiesCardsPopUp);
+window.addEventListener('DOMContentLoaded', handleTitlesAndStudiesCardsPopUp);
+
+    const peiyuanImages = ['peiyuan1.jpg', 'peiyuan2.jpg', 'peiyuan3.jpg', 'peiyuan4.jpg'];
+    let peiyuanIndex = 0;
+    setInterval(() => {
+        peiyuanIndex = (peiyuanIndex + 1) % peiyuanImages.length;
+        document.getElementById('peiyuan-carousel-img').src = peiyuanImages[peiyuanIndex];
+    }, 3000);
+
+    const sunwayImages = ['sunway1.jpg', 'sunway2.jpg', 'sunway3.jpg'];
+    let sunwayIndex = 0;
+    setInterval(() => {
+        sunwayIndex = (sunwayIndex + 1) % sunwayImages.length;
+        document.getElementById('sunway-carousel-img').src = sunwayImages[sunwayIndex];
+    }, 3000);
+
+    const cuhkImages = ['cuhk1.jpg', 'cuhk2.jpg', 'cuhk3.jpg'];
+    let cuhkIndex = 0;
+    setInterval(() => {
+        cuhkIndex = (cuhkIndex + 1) % cuhkImages.length;
+        document.getElementById('cuhk-carousel-img').src = cuhkImages[cuhkIndex];
+    }, 3000);
+</script>
+</body>
+</html>
+
